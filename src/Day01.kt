@@ -1,16 +1,18 @@
 fun main() {
-    fun part1(input: List<String>): Int {
+
+    fun List<Int>.countIncreases(): Int{
         var count = 0
         var last = -1
-        input.map { it.toInt() }
-            .forEach {
-                if (last != -1 && it > last) {
-                    count++
-                }
-                last = it
+        forEach {
+            if (last != -1 && it > last) {
+                count++
             }
+            last = it
+        }
         return count
     }
+
+    fun part1(input: List<String>): Int = input.map { it.toInt() }.countIncreases()
 
     fun part2(input: List<String>): Int {
         return input.size
