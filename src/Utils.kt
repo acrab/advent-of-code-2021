@@ -12,7 +12,7 @@ fun readInput(name: String) = File("src", "$name.txt").readLines()
  */
 fun String.md5(): String = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray())).toString(16)
 
-fun checkResult(actual: Int, expected: Int) = check(actual == expected) { "Expected $expected, but got $actual" }
+fun <T> checkResult(actual: T, expected: T) = check(actual == expected) { "Expected $expected, but got $actual" }
 
 fun <T> List<List<T>>.forEachGrid(action: (x: Int, y: Int, T) -> Unit) {
     forEachIndexed { x, row -> row.forEachIndexed { y, it -> action(x, y, it) } }
