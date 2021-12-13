@@ -3,7 +3,7 @@ package day09
 import checkResult
 import forEachGrid
 import gridSum
-import neighbours
+import orthogonalNeighbours
 import readIntegerGrid
 
 class Group(private val members: MutableList<GridPoint> = mutableListOf()) {
@@ -31,7 +31,7 @@ fun main() {
 
     fun part1(grid: List<List<Int>>): Int =
         grid.gridSum { x, y, i ->
-            if (grid.neighbours(x, y, 10).all { i < it }) {
+            if (grid.orthogonalNeighbours(x, y, 10).all { i < it }) {
                 calculateRisk(i)
             } else {
                 0
@@ -45,7 +45,7 @@ fun main() {
             //Value 9s are the walls between groups
             if (gridPoint.value == 9) return@forEachGrid
 
-            val neighbours = points.neighbours(x, y, null).filterNotNull()
+            val neighbours = points.orthogonalNeighbours(x, y, null).filterNotNull()
             val existingGroups = neighbours.mapNotNull { it.group }
             if (existingGroups.isEmpty()) {
                 //make a new group
