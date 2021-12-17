@@ -5,6 +5,11 @@ import java.io.File
  */
 fun readInput(name: String) = File("src", "$name.txt").readLines()
 
+/**
+ * Reads the input as a single string
+ */
+fun readInputLine(name: String) = File("src", "$name.txt").readText()
+
 fun readIntegerGrid(name: String) = readInput(name).map { line -> line.toCharArray().map { it.digitToInt() } }
 
 fun <T> checkResult(actual: T, expected: T) = check(actual == expected) { "Expected $expected, but got $actual" }
